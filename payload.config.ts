@@ -3,7 +3,6 @@ import { fileURLToPath } from 'url'
 import { buildConfig } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { seoPlugin } from '@payloadcms/plugin-seo'
 
 // Collections
 import { Users } from './src/payload/collections/Users'
@@ -49,16 +48,8 @@ export default buildConfig({
   // Secret key for authentication
   secret: process.env.PAYLOAD_SECRET || '',
 
-  // Plugins
-  plugins: [
-    seoPlugin({
-      collections: ['menu-items', 'service-packages'],
-      uploadsCollection: 'media',
-      generateTitle: ({ doc }) => `${doc?.name || 'Ada-e-Haandi'} | Premium North Indian Catering`,
-      generateDescription: ({ doc }) =>
-        doc?.description || 'Premium North Indian catering services in Delhi NCR since 1998.',
-    }),
-  ],
+  // Plugins (SEO plugin will be enabled after collections are created)
+  plugins: [],
 
   // Localization (optional - for Hindi support)
   // localization: {
