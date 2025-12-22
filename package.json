@@ -13,6 +13,10 @@
     "type-check": "tsc --noEmit",
     "payload": "payload",
     "generate:types": "payload generate:types",
+    "migrate:create": "payload migrate:create",
+    "migrate:up": "payload migrate",
+    "migrate:down": "payload migrate:down",
+    "migrate:status": "payload migrate:status",
     "test": "vitest",
     "test:e2e": "playwright test",
     "prepare": "husky"
