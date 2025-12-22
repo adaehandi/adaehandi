@@ -17,6 +17,7 @@
     "migrate:up": "payload migrate",
     "migrate:down": "payload migrate:down",
     "migrate:status": "payload migrate:status",
+    "db:push": "node --import tsx scripts/db-push.ts",
     "test": "vitest",
     "test:e2e": "playwright test",
     "prepare": "husky"
@@ -58,6 +59,7 @@
     "prettier": "^3.4.0",
     "prettier-plugin-tailwindcss": "^0.6.10",
     "tailwindcss": "^4.0.0",
+    "tsx": "^4.19.0",
     "typescript": "^5.7.0",
     "typescript-eslint": "^8.50.0"
   },
