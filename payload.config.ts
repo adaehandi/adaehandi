@@ -27,7 +27,7 @@ export default buildConfig({
   // Database adapter - PostgreSQL via Neon
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI || '',
+      connectionString: process.env.POSTGRES_URL || '',
     },
   }),
 
