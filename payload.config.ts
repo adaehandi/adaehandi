@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url'
 import { buildConfig } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import sharp from 'sharp'
 
 // Collections
 import { Users } from './src/payload/collections/Users'
@@ -28,7 +29,8 @@ export default buildConfig({
     pool: {
       connectionString: process.env.POSTGRES_URL || '',
     },
-    push: true, // Auto-create/update database schema
+    // Using migrations instead of push for production stability
+    push: false,
   }),
 
   // Rich text editor - Lexical
@@ -68,4 +70,7 @@ export default buildConfig({
   graphQL: {
     disable: true, // Disable GraphQL to reduce bundle size
   },
+
+  // Sharp for image processing
+  sharp,
 })
