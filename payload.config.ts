@@ -29,6 +29,7 @@ export default buildConfig({
     pool: {
       connectionString: process.env.POSTGRES_URL || '',
     },
+    push: true, // Auto-create/update database schema
   }),
 
   // Rich text editor - Lexical
