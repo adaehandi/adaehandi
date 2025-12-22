@@ -56,4 +56,4 @@ Thumbs.db
 public/media/
 
 # Generated types
-src/types/payload.ts
+src/types/payload-types.ts
