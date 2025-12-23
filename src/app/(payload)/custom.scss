@@ -1,0 +1,23 @@
+/*
+ * Custom SCSS for Payload Admin Panel
+ * This file is loaded by Payload's RootLayout
+ *
+ * IMPORTANT: Do NOT import Tailwind base/preflight styles here
+ * as they will conflict with Payload's built-in styles.
+ *
+ * See: https://payloadcms.com/docs/admin/customizing-css
+ */
+
+/* You can override Payload's CSS variables here if needed */
+/* Example:
+:root {
+  --theme-elevation-0: #ffffff;
+  --theme-elevation-50: #f9fafb;
+}
+*/
+
+/* Ada-e-Haandi admin branding (optional) */
+/* These use Payload's CSS layers to ensure proper specificity */
+@layer payload {
+  /* Custom admin styles can go here */
+}
