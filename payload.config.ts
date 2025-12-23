@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url'
 import { buildConfig } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import sharp from 'sharp'
 
 // Collections
@@ -50,8 +51,19 @@ export default buildConfig({
   // Secret key for authentication
   secret: process.env.PAYLOAD_SECRET || '',
 
-  // Plugins (SEO plugin will be enabled after collections are created)
-  plugins: [],
+  // Plugins
+  plugins: [
+    // Vercel Blob Storage for media uploads
+    // Requires BLOB_READ_WRITE_TOKEN env variable (auto-set by Vercel)
+    vercelBlobStorage({
+      collections: {
+        media: true, // Enable for Media collection
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+      // Use client uploads to bypass Vercel's 4.5MB serverless limit
+      clientUploads: true,
+    }),
+  ],
 
   // Localization (optional - for Hindi support)
   // localization: {
