@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Menu, X, Phone } from 'lucide-react'
 
 const navigation = [
@@ -35,12 +36,14 @@ export function Header(): React.ReactElement {
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
-            <div className="relative h-12 w-12">
-              {/* Placeholder for logo - will be replaced with actual logo */}
-              <div className="bg-navy-500 flex h-full w-full items-center justify-center rounded-full">
-                <span className="text-gold-500 font-serif text-lg font-bold">A</span>
-              </div>
-            </div>
+            <Image
+              src="/images/logo/logo.png"
+              alt="Ada-e-Haandi Logo"
+              width={48}
+              height={48}
+              className="h-12 w-12 object-contain"
+              priority
+            />
             <div className="hidden sm:block">
               <p
                 className={`font-serif text-xl font-bold transition-colors ${
