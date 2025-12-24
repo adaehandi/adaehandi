@@ -9,6 +9,16 @@ import sharp from 'sharp'
 // Collections
 import { Users } from './src/payload/collections/Users'
 import { Media } from './src/payload/collections/Media'
+import { MenuItems } from './src/payload/collections/MenuItems'
+import { ServicePackages } from './src/payload/collections/ServicePackages'
+import { Testimonials } from './src/payload/collections/Testimonials'
+import { Gallery } from './src/payload/collections/Gallery'
+import { Inquiries } from './src/payload/collections/Inquiries'
+
+// Globals
+import { SiteSettings } from './src/payload/globals/SiteSettings'
+import { Homepage } from './src/payload/globals/Homepage'
+import { Navigation } from './src/payload/globals/Navigation'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -38,10 +48,10 @@ export default buildConfig({
   editor: lexicalEditor({}),
 
   // Collections
-  collections: [Users, Media],
+  collections: [Users, Media, MenuItems, ServicePackages, Testimonials, Gallery, Inquiries],
 
   // Globals (site-wide settings)
-  globals: [],
+  globals: [SiteSettings, Homepage, Navigation],
 
   // TypeScript type generation
   typescript: {
