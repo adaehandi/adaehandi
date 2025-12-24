@@ -17,6 +17,13 @@ export const Media: CollectionConfig = {
   upload: {
     staticDir: 'public/media',
     mimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/avif', 'image/gif'],
+    // Convert all uploads to WebP for optimal performance
+    formatOptions: {
+      format: 'webp',
+      options: {
+        quality: 85,
+      },
+    },
     imageSizes: [
       {
         name: 'thumbnail',
