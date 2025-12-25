@@ -55,7 +55,12 @@ interface FormErrors {
   email?: string
   phone?: string
   message?: string
+  submit?: string
 }
+
+// Google Maps embed URL for South Moti Bagh
+const GOOGLE_MAPS_EMBED_URL =
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.0234!2d77.1686!3d28.5697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1d5f5c0f0001%3A0x1234567890abcdef!2sSouth%20Moti%20Bagh%20Market!5e0!3m2!1sen!2sin!4v1234567890'
 
 export default function ContactPage(): React.ReactElement {
   const [formData, setFormData] = useState<FormData>({
@@ -102,12 +107,43 @@ export default function ContactPage(): React.ReactElement {
     if (!validateForm()) return
 
     setIsSubmitting(true)
+    if (errors.submit) {
+      setErrors((prev) => {
+        const newErrors = { ...prev }
+        delete newErrors.submit
+        return newErrors
+      })
+    }
 
-    // Simulate API call - will be replaced with actual Payload CMS integration
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    try {
+      const response = await fetch('/api/inquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'contact',
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          eventType: formData.inquiryType,
+          message: formData.message,
+        }),
+      })
 
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to submit form')
+      }
+
+      setIsSubmitted(true)
+    } catch (error) {
+      setErrors((prev) => ({
+        ...prev,
+        submit: error instanceof Error ? error.message : 'An error occurred. Please try again.',
+      }))
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (
@@ -325,6 +361,13 @@ export default function ContactPage(): React.ReactElement {
                       )}
                     </div>
 
+                    {/* Submit Error */}
+                    {errors.submit && (
+                      <div className="rounded-lg bg-red-50 p-4 text-sm text-red-600">
+                        {errors.submit}
+                      </div>
+                    )}
+
                     {/* Submit Button */}
                     <button
                       type="submit"
@@ -495,20 +538,32 @@ export default function ContactPage(): React.ReactElement {
             </p>
           </div>
 
-          {/* Map placeholder */}
-          <div className="bg-navy-100 flex aspect-[21/9] items-center justify-center overflow-hidden rounded-2xl">
-            <div className="text-center">
-              <MapPin className="text-navy-300 mx-auto mb-4 h-12 w-12" />
-              <p className="text-navy-500 font-medium">Google Maps will be embedded here</p>
-              <a
-                href={contactInfo.address.mapUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gold-600 hover:text-gold-700 mt-2 inline-block text-sm font-medium"
-              >
-                Open in Google Maps →
-              </a>
-            </div>
+          {/* Google Maps Embed */}
+          <div className="shadow-elegant overflow-hidden rounded-2xl">
+            <iframe
+              src={GOOGLE_MAPS_EMBED_URL}
+              width="100%"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Ada-e-Haandi Location - South Moti Bagh Market, New Delhi"
+              className="w-full"
+            />
+          </div>
+
+          {/* Directions link */}
+          <div className="mt-4 text-center">
+            <a
+              href={contactInfo.address.mapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gold-600 hover:text-gold-700 inline-flex items-center gap-2 font-medium"
+            >
+              <MapPin className="h-4 w-4" />
+              Open in Google Maps for directions
+            </a>
           </div>
         </div>
       </section>

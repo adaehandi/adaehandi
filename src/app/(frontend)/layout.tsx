@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from 'next/font/google'
 import '@/styles/globals.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { WhatsAppButton } from '@/components/ui/WhatsAppButton'
 
 // Load fonts with Next.js optimization
 const inter = Inter({
@@ -97,6 +98,7 @@ export default function FrontendLayout({
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   )
