@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 // Stats data
 const stats = [
   { value: '27+', label: 'Years of Excellence', icon: Calendar },
-  { value: '5000+', label: 'Events Catered', icon: Users },
+  { value: '250+', label: 'Events Catered', icon: Users },
   { value: '100%', label: 'Client Satisfaction', icon: Award },
   { value: '50+', label: 'Menu Items', icon: ChefHat },
 ]
@@ -88,9 +88,9 @@ const milestones = [
   },
   {
     year: '2024',
-    title: '5000+ Events & Counting',
+    title: '250+ Events & Counting',
     description:
-      'Crossed 5000 events milestone, continuing to serve families and businesses with the same passion.',
+      'Crossed 250 events milestone, continuing to serve families and businesses with the same passion.',
   },
 ]
 
@@ -174,7 +174,7 @@ export default function AboutPage(): React.ReactElement {
                 <p>
                   What started as a small catering operation in South Moti Bagh has grown into one
                   of Delhi NCR&apos;s most trusted catering services. Over 27 years, we have had the
-                  privilege of being part of more than 5,000 celebrations – from intimate family
+                  privilege of being part of more than 250 celebrations – from intimate family
                   gatherings to grand weddings with 1000+ guests.
                 </p>
                 <p>

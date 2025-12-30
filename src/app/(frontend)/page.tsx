@@ -4,7 +4,7 @@ import { ArrowRight, ChefHat, Users, Calendar, Award, Star, CheckCircle } from '
 // Stats data
 const stats = [
   { value: '27+', label: 'Years of Excellence', icon: Calendar },
-  { value: '5000+', label: 'Events Catered', icon: Users },
+  { value: '250+', label: 'Events Catered', icon: Users },
   { value: '100%', label: 'Client Satisfaction', icon: Award },
 ]
 
@@ -85,10 +85,9 @@ export default function HomePage(): React.ReactElement {
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2">
-          <div className="flex flex-col items-center gap-2 text-white/60">
-            <span className="text-xs tracking-widest uppercase">Scroll</span>
-            <div className="h-12 w-0.5 animate-pulse bg-gradient-to-b from-white/60 to-transparent" />
+        <div className="absolute bottom-24 left-1/2 z-20 -translate-x-1/2 animate-bounce">
+          <div className="flex h-10 w-6 items-start justify-center rounded-full border-2 border-white/40 p-1">
+            <div className="h-2 w-1 animate-pulse rounded-full bg-white/60" />
           </div>
         </div>
       </section>
